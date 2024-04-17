@@ -1,9 +1,13 @@
+import { useDispatch, useSelector } from 'react-redux';
 import './SearchBox.css';
 
-const SearchBox = ({ filterUsers, setFilterUsers }) => {
+const SearchBox = () => {
+    const filterUsers = useSelector(state => state.filters);
+    const dispatch = useDispatch();
 
     function showFilteredUsers(e) {
-        setFilterUsers(e.target.value)
+        const action = { type: "filters/SET_FILTER", payload: e.target.value }
+        dispatch(action);
     }
 
     return (

@@ -1,11 +1,20 @@
+import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import './ContactList.css';
 
-const ContactList = ({ users, onDeleteUser }) => {
+const ContactList = () => {
+    const users = useSelector(state => state.contacts);
+    const filterUsers = useSelector(state => state.filters);
+
+    //фільтрація йде тільки коли в полі пошуку введені данні, коли воно пусте, то показуються усі користувачі 
+    const visibleUsers =
+        users.filter(user => {
+            return user.name.toLowerCase().includes(filterUsers.toLowerCase());
+        })
     return (
         <ul className="user-list">
-            {users.map((user) => {
-                return <Contact key={user.id} user={user} onDeleteUser={onDeleteUser} />
+            {visibleUsers.map(({ id, ...userProps }) => {
+                return <Contact key={id} userProps={userProps} id={id} />
             })}
         </ul>
     )
