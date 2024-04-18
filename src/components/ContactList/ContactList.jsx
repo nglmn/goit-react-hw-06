@@ -3,8 +3,8 @@ import Contact from "../Contact/Contact";
 import './ContactList.css';
 
 const ContactList = () => {
-    const users = useSelector(state => state.contacts);
-    const filterUsers = useSelector(state => state.filters);
+    const users = useSelector(state => state.contacts.contacts.items);
+    const filterUsers = useSelector(state => state.filters.filters.name);
 
     //фільтрація йде тільки коли в полі пошуку введені данні, коли воно пусте, то показуються усі користувачі 
     const visibleUsers =

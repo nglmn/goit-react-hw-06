@@ -2,12 +2,13 @@ import { FaUserCircle } from "react-icons/fa";
 import { HiPhone } from "react-icons/hi2";
 import './Contact.css';
 import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
+
 
 const Contact = ({ userProps: { name, number }, id }) => {
     const dispatch = useDispatch();
     const handleDeleteUser = (id) => {
-        const action = { type: "contacts/DELETE_USER", payload: id }
-        dispatch(action);
+        dispatch(deleteContact(id));
     }
     return (
         <li className="user-item">
